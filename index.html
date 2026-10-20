@@ -4,39 +4,57 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Weather Dashboard</title>
-  <meta name="description" content="Search any city for current weather and a 7-day forecast.">
+  <meta name="description" content="Search any city for current weather, an hourly forecast and a 7-day forecast.">
+  <meta name="theme-color" content="#2f6bff">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⛅</text></svg>">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <main class="app">
     <header class="app-header">
-      <h1>⛅ Weather Dashboard</h1>
-      <form id="search-form" class="search" role="search">
-        <label for="city-input" class="visually-hidden">City name</label>
-        <input id="city-input" type="search" placeholder="Search a city, e.g. Tokyo" autocomplete="off" required>
-        <button type="submit">Search</button>
+      <div class="title-row">
+        <h1>⛅ Weather Dashboard</h1>
+        <div class="unit-toggle" role="group" aria-label="Temperature unit">
+          <button type="button" data-unit="C" aria-pressed="true">°C</button>
+          <button type="button" data-unit="F" aria-pressed="false">°F</button>
+        </div>
+      </div>
+
+      <form id="search-form" class="search" role="search" autocomplete="off">
+        <div class="search-field">
+          <label for="city-input" class="visually-hidden">City name</label>
+          <input id="city-input" type="search" placeholder="Search a city…"
+                 role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="suggestions">
+          <ul id="suggestions" class="suggestions" role="listbox" aria-label="City suggestions" hidden></ul>
+        </div>
+        <button type="submit" class="search-button">Search</button>
+        <button type="button" id="locate-button" class="locate-button" title="Use my location" aria-label="Use my location">📍</button>
       </form>
+
+      <div id="recent" class="recent" aria-label="Recent searches" hidden></div>
     </header>
 
     <p id="status" class="status" role="status" aria-live="polite" hidden></p>
 
     <section id="current" class="card current" hidden>
       <div class="current-main">
-        <div>
+        <div class="current-place">
           <h2 id="location" class="location"></h2>
+          <p id="local-time" class="local-time"></p>
           <p id="condition" class="condition"></p>
+          <p id="high-low" class="high-low"></p>
         </div>
         <div class="current-temp">
           <span id="current-icon" class="current-icon" aria-hidden="true"></span>
           <span id="temperature" class="temperature"></span>
         </div>
       </div>
-      <dl class="details">
-        <div><dt>Feels like</dt><dd id="feels-like"></dd></div>
-        <div><dt>Humidity</dt><dd id="humidity"></dd></div>
-        <div><dt>Wind</dt><dd id="wind"></dd></div>
-      </dl>
+      <dl id="details" class="details"></dl>
+    </section>
+
+    <section id="hourly-section" class="card" hidden>
+      <h2 class="section-title">Next 24 hours</h2>
+      <ol id="hourly" class="hourly" tabindex="0" aria-label="Hourly forecast"></ol>
     </section>
 
     <section id="forecast-section" class="card" hidden>
