@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Weather Dashboard</title>
+  <meta name="description" content="Search any city for current weather and a 7-day forecast.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⛅</text></svg>">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="app-header">
+      <h1>⛅ Weather Dashboard</h1>
+      <form id="search-form" class="search" role="search">
+        <label for="city-input" class="visually-hidden">City name</label>
+        <input id="city-input" type="search" placeholder="Search a city, e.g. Tokyo" autocomplete="off" required>
+        <button type="submit">Search</button>
+      </form>
+    </header>
+
+    <p id="status" class="status" role="status" aria-live="polite" hidden></p>
+
+    <section id="current" class="card current" hidden>
+      <div class="current-main">
+        <div>
+          <h2 id="location" class="location"></h2>
+          <p id="condition" class="condition"></p>
+        </div>
+        <div class="current-temp">
+          <span id="current-icon" class="current-icon" aria-hidden="true"></span>
+          <span id="temperature" class="temperature"></span>
+        </div>
+      </div>
+      <dl class="details">
+        <div><dt>Feels like</dt><dd id="feels-like"></dd></div>
+        <div><dt>Humidity</dt><dd id="humidity"></dd></div>
+        <div><dt>Wind</dt><dd id="wind"></dd></div>
+      </dl>
+    </section>
+
+    <section id="forecast-section" class="card" hidden>
+      <h2 class="section-title">7-day forecast</h2>
+      <ol id="forecast" class="forecast"></ol>
+    </section>
+
+    <footer class="app-footer">
+      Weather data by <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
