@@ -58,3 +58,7 @@ weather-dashboard/
 ## Credits
 
 Weather data by [Open-Meteo.com](https://open-meteo.com/) (CC BY 4.0).
+
+## License
+
+[MIT](LICENSE) © 2026 Diogo Botelho
